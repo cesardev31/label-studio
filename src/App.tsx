@@ -1,0 +1,382 @@
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  FaWhatsapp,
+  FaEnvelope,
+  FaPrint,
+  FaPaintBrush,
+  FaExpandArrowsAlt,
+  FaTruck,
+  FaLightbulb,
+  FaTools,
+} from "react-icons/fa";
+
+export default function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+
+  const fadeIn = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.6 } },
+  };
+
+  const slideIn = {
+    hidden: { x: -100, opacity: 0 },
+    visible: { x: 0, opacity: 1, transition: { duration: 0.6 } },
+  };
+
+  const services = [
+    {
+      icon: FaPrint,
+      title: "Impresión Digital",
+      description:
+        "Impresiones de alta calidad en diversos materiales y tamaños.",
+    },
+    {
+      icon: FaPaintBrush,
+      title: "Diseño Gráfico",
+      description:
+        "Creación de diseños atractivos y efectivos para tu publicidad.",
+    },
+    {
+      icon: FaExpandArrowsAlt,
+      title: "Gran Formato",
+      description: "Impresiones de gran tamaño para vallas, banners y más.",
+    },
+    {
+      icon: FaTruck,
+      title: "Rotulación de Vehículos",
+      description: "Personalización de flotas y vehículos comerciales.",
+    },
+    {
+      icon: FaLightbulb,
+      title: "Displays Luminosos",
+      description:
+        "Creación de displays con iluminación LED para mayor impacto.",
+    },
+    {
+      icon: FaTools,
+      title: "Instalación y Montaje",
+      description:
+        "Servicio completo de instalación y desinstalación de publicidad.",
+    },
+  ];
+
+  const projects = [
+    {
+      image: "img_01.png?height=300&width=400",
+      title: "Campaña Pepsi",
+      description: "Display LED de gran formato para evento",
+    },
+    {
+      image: "img_02.png?height=300&width=400",
+      title: "Rotulación de Camión",
+      description: "Impresión en vinilo para flota comercial",
+    },
+    {
+      image: "img_03.png?height=300&width=400",
+      title: "Póster de Cine",
+      description: "Impresión de alta calidad para promoción de películas",
+    },
+    {
+      image: "img_04.png?height=300&width=400",
+      title: "Experiencia de Marca",
+      description: "Instalación interactiva para Venom",
+    },
+    {
+      image: "img_05.png?height=300&width=400",
+      title: "Stand de Exhibición",
+      description: "Diseño y producción de stand para eventos",
+    },
+    {
+      image: "img_06.png?height=300&width=400",
+      title: "Fachada Comercial",
+      description: "Impresión e instalación de gran formato en edificio",
+    },
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["inicio", "servicios", "proyectos", "contacto"];
+      const currentSection = sections.find((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      if (currentSection) {
+        setActiveSection(currentSection);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsMenuOpen(false);
+  };
+
+  return (
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-[#8E1B54] to-[#4A0E2A] text-white">
+      <header className="sticky top-0 z-50 bg-[#8E1B54] shadow-lg">
+        <div className="container mx-auto flex justify-between items-center p-4">
+          <motion.h1
+            className="text-2xl md:text-3xl font-bold"
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn}
+          >
+            LABEL STUDIO S.A.S
+          </motion.h1>
+          <nav className="hidden md:block">
+            <ul className="flex space-x-6">
+              {["inicio", "servicios", "proyectos", "contacto"].map(
+                (item, index) => (
+                  <motion.li
+                    key={item}
+                    initial="hidden"
+                    animate="visible"
+                    variants={slideIn}
+                    custom={index}
+                  >
+                    <button
+                      onClick={() => scrollToSection(item)}
+                      className={`capitalize hover:text-pink-300 transition duration-300 ${
+                        activeSection === item ? "text-pink-300" : ""
+                      }`}
+                    >
+                      {item}
+                    </button>
+                  </motion.li>
+                )
+              )}
+            </ul>
+          </nav>
+          <div className="md:hidden">
+            <Button
+              variant="outline"
+              className="text-white border-white hover:bg-pink-700 hover:text-white focus:text-pink-300 active:text-pink-300"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? "Cerrar" : "Menú"}
+            </Button>
+          </div>
+        </div>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-[#8E1B54] py-2"
+          >
+            <ul className="flex flex-col items-center space-y-2">
+              {["inicio", "servicios", "proyectos", "contacto"].map((item) => (
+                <li key={item} className="w-full">
+                  <button
+                    onClick={() => scrollToSection(item)}
+                    className="block px-4 py-2 hover:bg-pink-700 focus:bg-pink-700 active:bg-pink-700 rounded transition duration-300 capitalize w-full text-left"
+                  >
+                    {item}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </header>
+
+      <main className="flex-grow">
+        <section
+          id="inicio"
+          className="min-h-screen flex items-center justify-center text-center px-4"
+        >
+          <motion.div initial="hidden" animate="visible" variants={fadeIn}>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              Impresiones de Publicidad para Empresas
+            </h2>
+            <p className="text-xl md:text-2xl mb-8">
+              Soluciones creativas y de alta calidad para tu marca
+            </p>
+            <Button
+              className="bg-white text-[#8E1B54] hover:bg-pink-100 transition duration-300 transform hover:scale-105"
+              onClick={() =>
+                window.open("https://wa.me/+573192314711", "_blank")
+              }
+            >
+              Solicitar Cotización
+            </Button>
+          </motion.div>
+        </section>
+
+        <section id="servicios" className="py-20 px-4">
+          <div className="container mx-auto">
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-center mb-12"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+            >
+              Nuestros Servicios
+            </motion.h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, index) => (
+                <motion.div
+                  key={service.title}
+                  className="bg-white/10 p-6 rounded-lg backdrop-blur-sm hover:bg-white/20 transition duration-300"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={slideIn}
+                  custom={index}
+                >
+                  <service.icon className="text-4xl mb-4 text-pink-300" />
+                  <h3 className="text-xl font-semibold mb-4">
+                    {service.title}
+                  </h3>
+                  <p>{service.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="proyectos" className="py-20 px-4 bg-white/5">
+          <div className="container mx-auto">
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-center mb-12"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+            >
+              Nuestros Proyectos
+            </motion.h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project, index) => (
+                <motion.div
+                  key={project.title}
+                  className="bg-white/10 rounded-lg overflow-hidden hover:shadow-lg transition duration-300"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={slideIn}
+                  custom={index}
+                >
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-4">
+                    <h3 className="text-xl font-semibold mb-2">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm">{project.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="contacto" className="py-20 px-4">
+          <div className="container mx-auto">
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-center mb-12"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+            >
+              Contáctanos
+            </motion.h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={slideIn}
+              >
+                <h3 className="text-2xl font-semibold mb-6">
+                  Información de Contacto
+                </h3>
+                <p className="mb-4">
+                  <strong>Ejecutiva de cuenta:</strong> Jennyffer Sánchez
+                </p>
+                <p className="flex items-center mb-4">
+                  <FaWhatsapp className="mr-2 text-green-400" />
+                  <a
+                    href="https://wa.me/573492314711"
+                    className="hover:text-pink-300 transition duration-300"
+                  >
+                    319 231 4711
+                  </a>
+                </p>
+                <p className="flex items-center">
+                  <FaEnvelope className="mr-2 text-blue-400" />
+                  <a
+                    href="mailto:labelstudiosa@gmail.com"
+                    className="hover:text-pink-300 transition duration-300"
+                  >
+                    labelstudiosa@gmail.com
+                  </a>
+                </p>
+              </motion.div>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={slideIn}
+              >
+                <h3 className="text-2xl font-semibold mb-6">
+                  Envíanos un mensaje
+                </h3>
+                <form className="space-y-4">
+                  <Input
+                    placeholder="Nombre"
+                    className="bg-white/10 border-white/20 text-white placeholder-gray-300"
+                  />
+                  <Input
+                    type="email"
+                    placeholder="Correo electrónico"
+                    className="bg-white/10 border-white/20 text-white placeholder-gray-300"
+                  />
+                  <Textarea
+                    placeholder="Mensaje"
+                    className="bg-white/10 border-white/20 text-white placeholder-gray-300"
+                  />
+                  <Button className="w-full bg-pink-600 hover:bg-pink-700 transition duration-300 transform hover:scale-105">
+                    Enviar Mensaje
+                  </Button>
+                </form>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="bg-[#4A0E2A] py-6 text-center">
+        <motion.p
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeIn}
+        >
+          &copy; 2024 Label Studio S.A.S. Todos los derechos reservados.
+        </motion.p>
+      </footer>
+    </div>
+  );
+}
