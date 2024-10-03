@@ -12,6 +12,8 @@ import {
   FaTruck,
   FaLightbulb,
   FaTools,
+  FaStar,
+  FaArrowRight,
 } from "react-icons/fa";
 
 export default function App() {
@@ -33,35 +35,37 @@ export default function App() {
       icon: FaPrint,
       title: "Impresión Digital",
       description:
-        "Impresiones de alta calidad en diversos materiales y tamaños.",
+        "Impresiones de alta calidad en diversos materiales y tamaños. Perfectas para folletos, carteles y más.",
     },
     {
       icon: FaPaintBrush,
       title: "Diseño Gráfico",
       description:
-        "Creación de diseños atractivos y efectivos para tu publicidad.",
+        "Creación de diseños atractivos y efectivos para tu publicidad. Logos, branding y materiales promocionales.",
     },
     {
       icon: FaExpandArrowsAlt,
       title: "Gran Formato",
-      description: "Impresiones de gran tamaño para vallas, banners y más.",
+      description:
+        "Impresiones de gran tamaño para vallas, banners y más. Ideal para eventos y publicidad exterior.",
     },
     {
       icon: FaTruck,
       title: "Rotulación de Vehículos",
-      description: "Personalización de flotas y vehículos comerciales.",
+      description:
+        "Personalización de flotas y vehículos comerciales. Transforma tu vehículo en una herramienta de marketing móvil.",
     },
     {
       icon: FaLightbulb,
       title: "Displays Luminosos",
       description:
-        "Creación de displays con iluminación LED para mayor impacto.",
+        "Creación de displays con iluminación LED para mayor impacto. Perfectos para destacar en ferias y eventos.",
     },
     {
       icon: FaTools,
       title: "Instalación y Montaje",
       description:
-        "Servicio completo de instalación y desinstalación de publicidad.",
+        "Servicio completo de instalación y desinstalación de publicidad. Nos encargamos de todo para que tú no tengas que preocuparte.",
     },
   ];
 
@@ -69,7 +73,7 @@ export default function App() {
     {
       image: "img_01.png?height=300&width=400",
       title: "Campaña Pepsi",
-      description: "Display LED de gran formato para evento",
+      description: "Display LED de gran formato para evento internacional",
     },
     {
       image: "img_02.png?height=300&width=400",
@@ -79,12 +83,12 @@ export default function App() {
     {
       image: "img_03.png?height=300&width=400",
       title: "Póster de Cine",
-      description: "Impresión de alta calidad para promoción de películas",
+      description: "Impresión de alta calidad para estreno de blockbuster",
     },
     {
       image: "img_04.png?height=300&width=400",
       title: "Experiencia de Marca",
-      description: "Instalación interactiva para Venom",
+      description: "Instalación interactiva 360° para lanzamiento de producto",
     },
     {
       image: "img_05.png?height=300&width=400",
@@ -199,91 +203,142 @@ export default function App() {
       <main className="flex-grow">
         <section
           id="inicio"
-          className="min-h-screen flex items-center justify-center text-center px-4"
+          className="min-h-screen flex items-center justify-center text-center px-4 bg-cover bg-center bg-no-repeat relative"
+          style={{
+            backgroundImage: "url('/placeholder.svg?height=1080&width=1920')",
+          }}
         >
-          <motion.div initial="hidden" animate="visible" variants={fadeIn}>
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Impresiones de Publicidad para Empresas
+          <div className="absolute inset-0 bg-gradient-to-b from-[#8E1B54] to-[#4A0E2A] opacity-80"></div>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn}
+            className="relative z-10 max-w-4xl mx-auto"
+          >
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              Transformamos tus Ideas en Impresiones Impactantes
             </h2>
-            <p className="text-xl md:text-2xl mb-8">
-              Soluciones creativas y de alta calidad para tu marca
+            <p className="text-xl md:text-2xl mb-8 text-gray-200">
+              En Label Studio, fusionamos creatividad y tecnología para llevar
+              tu marca al siguiente nivel. Descubre soluciones de impresión y
+              diseño que capturan la atención y generan resultados.
             </p>
-            <Button
-              className="bg-white text-[#8E1B54] hover:bg-pink-100 transition duration-300 transform hover:scale-105"
-              onClick={() =>
-                window.open("https://wa.me/+573192314711", "_blank")
-              }
-            >
-              Solicitar Cotización
-            </Button>
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+              <Button
+                className="bg-white text-[#8E1B54] hover:bg-pink-100 transition duration-300 transform hover:scale-105 text-lg px-8 py-3"
+                onClick={() =>
+                  window.open("https://wa.me/+573192314711", "_blank")
+                }
+              >
+                Solicitar Cotización <FaWhatsapp className="ml-2 inline" />
+              </Button>
+              <Button
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-[#8E1B54] transition duration-300 text-lg px-8 py-3"
+                onClick={() => scrollToSection("servicios")}
+              >
+                Explorar Servicios <FaArrowRight className="ml-2 inline" />
+              </Button>
+            </div>
           </motion.div>
         </section>
 
-        <section id="servicios" className="py-20 px-4">
+        <section
+          id="servicios"
+          className="py-20 px-4 bg-gradient-to-b from-[#4A0E2A] to-[#8E1B54]"
+        >
           <div className="container mx-auto">
             <motion.h2
-              className="text-3xl md:text-4xl font-bold text-center mb-12"
+              className="text-3xl md:text-5xl font-bold text-center mb-12"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeIn}
             >
-              Nuestros Servicios
+              Nuestros Servicios de Excelencia
             </motion.h2>
+            <p className="text-center text-xl mb-12 max-w-3xl mx-auto">
+              Ofrecemos una gama completa de soluciones de impresión y diseño
+              para satisfacer todas tus necesidades publicitarias y de
+              marketing.
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((service, index) => (
                 <motion.div
                   key={service.title}
-                  className="bg-white/10 p-6 rounded-lg backdrop-blur-sm hover:bg-white/20 transition duration-300"
+                  className="bg-white/10 p-6 rounded-lg backdrop-blur-sm hover:bg-white/20 transition duration-300 flex flex-col"
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={slideIn}
                   custom={index}
                 >
-                  <service.icon className="text-4xl mb-4 text-pink-300" />
-                  <h3 className="text-xl font-semibold mb-4">
+                  <service.icon className="text-5xl mb-4 text-pink-300" />
+                  <h3 className="text-2xl font-semibold mb-4">
                     {service.title}
                   </h3>
-                  <p>{service.description}</p>
+                  <p className="flex-grow">{service.description}</p>
+                  <Button
+                    variant="link"
+                    className="text-pink-300 hover:text-pink-400 mt-4 p-0"
+                    onClick={() => scrollToSection("contacto")}
+                  >
+                    Más información <FaArrowRight className="ml-2 inline" />
+                  </Button>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="proyectos" className="py-20 px-4 bg-white/5">
+        <section
+          id="proyectos"
+          className="py-20 px-4 bg-gradient-to-b from-[#8E1B54] to-[#4A0E2A]"
+        >
           <div className="container mx-auto">
             <motion.h2
-              className="text-3xl md:text-4xl font-bold text-center mb-12"
+              className="text-3xl md:text-5xl font-bold text-center mb-12"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeIn}
             >
-              Nuestros Proyectos
+              Proyectos que Inspiran
             </motion.h2>
+            <p className="text-center text-xl mb-12 max-w-3xl mx-auto">
+              Explora nuestra galería de proyectos destacados y descubre cómo
+              hemos ayudado a marcas líderes a destacar en el mercado.
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project, index) => (
                 <motion.div
                   key={project.title}
-                  className="bg-white/10 rounded-lg overflow-hidden hover:shadow-lg transition duration-300"
+                  className="bg-white/10 rounded-lg overflow-hidden hover:shadow-lg transition duration-300 group"
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={slideIn}
                   custom={index}
                 >
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-4">
-                    <h3 className="text-xl font-semibold mb-2">
+                  <div className="relative">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-64 object-cover transition duration-300 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-70 transition duration-300"></div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-2xl font-semibold mb-2">
                       {project.title}
                     </h3>
-                    <p className="text-sm">{project.description}</p>
+                    <p className="text-gray-300 mb-4">{project.description}</p>
+                    <Button
+                      variant="link"
+                      className="text-pink-300 hover:text-pink-400 p-0"
+                    >
+                      Ver detalles <FaArrowRight className="ml-2 inline" />
+                    </Button>
                   </div>
                 </motion.div>
               ))}
@@ -291,48 +346,60 @@ export default function App() {
           </div>
         </section>
 
-        <section id="contacto" className="py-20 px-4">
+        <section
+          id="contacto"
+          className="py-20 px-4 bg-gradient-to-b from-[#4A0E2A] to-[#8E1B54]"
+        >
           <div className="container mx-auto">
             <motion.h2
-              className="text-3xl md:text-4xl font-bold text-center mb-12"
+              className="text-3xl md:text-5xl font-bold text-center mb-12"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeIn}
             >
-              Contáctanos
+              Hablemos de tu Próximo Proyecto
             </motion.h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
               <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={slideIn}
+                className="bg-white/10 p-8 rounded-lg backdrop-blur-sm"
               >
                 <h3 className="text-2xl font-semibold mb-6">
                   Información de Contacto
                 </h3>
-                <p className="mb-4">
-                  <strong>Ejecutiva de cuenta:</strong> Jennyffer Sánchez
+                <p className="mb-6 text-lg">
+                  Estamos listos para convertir tus ideas en realidad.
+                  Contáctanos hoy mismo y descubre cómo podemos impulsar tu
+                  marca.
                 </p>
-                <p className="flex items-center mb-4">
-                  <FaWhatsapp className="mr-2 text-green-400" />
-                  <a
-                    href="https://wa.me/573492314711"
-                    className="hover:text-pink-300 transition duration-300"
-                  >
-                    319 231 4711
-                  </a>
-                </p>
-                <p className="flex items-center">
-                  <FaEnvelope className="mr-2 text-blue-400" />
-                  <a
-                    href="mailto:labelstudiosa@gmail.com"
-                    className="hover:text-pink-300 transition duration-300"
-                  >
-                    labelstudiosa@gmail.com
-                  </a>
-                </p>
+                <div className="space-y-4">
+                  <p className="flex items-center text-lg">
+                    <FaStar className="mr-2 text-yellow-400" />
+                    <strong>Ejecutiva de cuenta:</strong> Jennyffer Sánchez
+                  </p>
+                  <p className="flex items-center text-lg">
+                    <FaWhatsapp className="mr-2 text-green-400" />
+                    <a
+                      href="https://wa.me/573492314711"
+                      className="hover:text-pink-300 transition duration-300"
+                    >
+                      319 231 4711
+                    </a>
+                  </p>
+                  <p className="flex items-center text-lg">
+                    <FaEnvelope className="mr-2 text-blue-400" />
+                    <a
+                      href="mailto:labelstudiosa@gmail.com"
+                      className="hover:text-pink-300 transition duration-300"
+                    >
+                      labelstudiosa@gmail.com
+                    </a>
+                  </p>
+                </div>
               </motion.div>
               <motion.div
                 initial="hidden"
@@ -343,21 +410,22 @@ export default function App() {
                 <h3 className="text-2xl font-semibold mb-6">
                   Envíanos un mensaje
                 </h3>
-                <form className="space-y-4">
+                <form className="space-y-6">
                   <Input
                     placeholder="Nombre"
-                    className="bg-white/10 border-white/20 text-white placeholder-gray-300"
+                    className="bg-white/10 border-white/20 text-white placeholder-gray-300 text-lg py-3"
                   />
                   <Input
                     type="email"
                     placeholder="Correo electrónico"
-                    className="bg-white/10 border-white/20 text-white placeholder-gray-300"
+                    className="bg-white/10 border-white/20 text-white placeholder-gray-300 text-lg py-3"
                   />
                   <Textarea
-                    placeholder="Mensaje"
-                    className="bg-white/10 border-white/20 text-white placeholder-gray-300"
+                    placeholder="Cuéntanos sobre tu proyecto"
+                    className="bg-white/10 border-white/20 text-white placeholder-gray-300 text-lg py-3"
+                    rows={5}
                   />
-                  <Button className="w-full bg-pink-600 hover:bg-pink-700 transition duration-300 transform hover:scale-105">
+                  <Button className="w-full bg-pink-600 hover:bg-pink-700 transition duration-300 transform hover:scale-105 text-lg py-3">
                     Enviar Mensaje
                   </Button>
                 </form>
@@ -367,15 +435,50 @@ export default function App() {
         </section>
       </main>
 
-      <footer className="bg-[#4A0E2A] py-6 text-center">
-        <motion.p
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeIn}
-        >
-          &copy; 2024 Label Studio S.A.S. Todos los derechos reservados.
-        </motion.p>
+      <footer className="bg-[#4A0E2A] py-12 text-center">
+        <div className="container mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="mb-8"
+          >
+            <h3 className="text-2xl font-bold mb-4">Label Studio S.A.S</h3>
+            <p className="text-gray-300">
+              Transformando ideas en impresiones impactantes desde 2010
+            </p>
+          </motion.div>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="flex justify-center space-x-6 mb-8"
+          >
+            <a
+              href="#"
+              className="text-white hover:text-pink-300 transition duration-300"
+            >
+              <FaWhatsapp size={24} />
+            </a>
+            <a
+              href="#"
+              className="text-white hover:text-pink-300 transition duration-300"
+            >
+              <FaEnvelope size={24} />
+            </a>
+          </motion.div>
+          <motion.p
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="text-sm text-gray-400"
+          >
+            &copy; 2024 Label Studio S.A.S. Todos los derechos reservados.
+          </motion.p>
+        </div>
       </footer>
     </div>
   );
