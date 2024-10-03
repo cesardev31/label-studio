@@ -240,13 +240,6 @@ export default function App() {
               >
                 Solicitar Cotización <FaWhatsapp className="ml-2 inline" />
               </Button>
-              <Button
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-[#8E1B54] transition duration-300 text-lg px-8 py-3"
-                onClick={() => scrollToSection("servicios")}
-              >
-                Explorar Servicios <FaArrowRight className="ml-2 inline" />
-              </Button>
             </div>
           </motion.div>
         </section>
