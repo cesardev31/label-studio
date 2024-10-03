@@ -446,7 +446,7 @@ export default function App() {
           >
             <h3 className="text-2xl font-bold mb-4">Label Studio S.A.S</h3>
             <p className="text-gray-300">
-              Transformando ideas en impresiones impactantes desde 2010
+              Transformando ideas en impresiones impactantes.
             </p>
           </motion.div>
           <motion.div
