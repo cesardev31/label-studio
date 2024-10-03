@@ -213,7 +213,7 @@ export default function App() {
           id="inicio"
           className="min-h-screen flex items-center justify-center text-center px-4 bg-cover bg-center bg-no-repeat relative"
           style={{
-            backgroundImage: "url('/placeholder.svg?height=1080&width=1920')",
+            backgroundImage: "url('background.png?height=1080&width=1920')",
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-[#8E1B54] to-[#4A0E2A] opacity-80"></div>
