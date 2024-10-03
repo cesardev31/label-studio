@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { ImageViewer } from "@/components/image-viewer";
 import {
   FaWhatsapp,
   FaEnvelope,
@@ -19,6 +20,8 @@ import {
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [isImageViewerOpen, setIsImageViewerOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const fadeIn = {
     hidden: { opacity: 0 },
@@ -128,6 +131,11 @@ export default function App() {
       element.scrollIntoView({ behavior: "smooth" });
     }
     setIsMenuOpen(false);
+  };
+
+  const openImageViewer = (index: number) => {
+    setCurrentImageIndex(index);
+    setIsImageViewerOpen(true);
   };
 
   return (
@@ -313,12 +321,13 @@ export default function App() {
               {projects.map((project, index) => (
                 <motion.div
                   key={project.title}
-                  className="bg-white/10 rounded-lg overflow-hidden hover:shadow-lg transition duration-300 group"
+                  className="bg-white/10 rounded-lg overflow-hidden hover:shadow-lg transition duration-300 group cursor-pointer"
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={slideIn}
                   custom={index}
+                  onClick={() => openImageViewer(index)}
                 >
                   <div className="relative">
                     <img
@@ -446,7 +455,7 @@ export default function App() {
           >
             <h3 className="text-2xl font-bold mb-4">Label Studio S.A.S</h3>
             <p className="text-gray-300">
-              Transformando ideas en impresiones impactantes.
+              Transformando ideas en impresiones impactantes desde 2010
             </p>
           </motion.div>
           <motion.div
@@ -480,6 +489,19 @@ export default function App() {
           </motion.p>
         </div>
       </footer>
+
+      <AnimatePresence>
+        {isImageViewerOpen && (
+          <ImageViewer
+            images={projects.map((project) => ({
+              src: project.image,
+              alt: project.title,
+            }))}
+            initialIndex={currentImageIndex}
+            onClose={() => setIsImageViewerOpen(false)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
