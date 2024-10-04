@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -48,7 +47,7 @@ export function ProjectGallery() {
       const loadedImages: Image[] = [];
 
       Object.entries(imageImports).forEach(([category, files]) => {
-        files.forEach(([path, module]: [string, any]) => {
+        files.forEach(([, /* path */ module]: [string, any]) => {
           loadedImages.push({
             src: module.default,
             alt: `Imagen de ${category}`,
