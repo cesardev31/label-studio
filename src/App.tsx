@@ -477,7 +477,7 @@ export default function App() {
               Label Studio S.A.S
             </h3>
             <p className="text-sm sm:text-base text-gray-300">
-              Transformando ideas en impresiones impactantes desde 2010
+              Transformando ideas en impresiones impactantes
             </p>
           </motion.div>
           <motion.div
