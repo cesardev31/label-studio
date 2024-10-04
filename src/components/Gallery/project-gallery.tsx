@@ -10,7 +10,7 @@ interface Image {
   category: string;
 }
 
-const categories = ["Todas", "Alturas", "Autos", "Banglain", "Carton"];
+const categories = ["Todas", "Alturas", "Autos", "Backlight", "Carton"];
 
 const imageImports = {
   alturas: Object.entries(
@@ -23,8 +23,8 @@ const imageImports = {
       eager: true,
     })
   ),
-  banglain: Object.entries(
-    import.meta.glob("@/assets/Gallery/Banglain/*.{jpg,png,jpeg,webp}", {
+  Backlight: Object.entries(
+    import.meta.glob("@/assets/Gallery/Backlight/*.{jpg,png,jpeg,webp}", {
       eager: true,
     })
   ),
